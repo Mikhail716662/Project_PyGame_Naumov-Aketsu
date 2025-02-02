@@ -153,9 +153,6 @@ def menu():
     menu.add.selector('Сложность: ',
                       [('Уровень 1', 0), ('Уровень 2', 1), ('Уровень 3', 2), ('Уровень 4', 3), ('Уровень 5', 4)],
                       onchange=set_difficulty)
-    # menu.add.selector('Скин: ',
-    #                   [('Default cube', 0), ('Crazy cube', 1), ('Kaneki cube', 2), ('Akashi cube', 3)],
-    #                   onchange=set_skin)
     menu.add.button('Правила', rules_screen)
     menu.add.button('Играть', lambda: game_cycle(DIFFICULTY))
     menu.add.button('Выход', terminate)
