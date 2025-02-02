@@ -1,8 +1,10 @@
 import sys
 from typing import Tuple, Any
-from pygame_menu.examples.other.maze import WHITE
+
 import pygame_menu
 from pygame_menu.examples import create_example_window
+from pygame_menu.examples.other.maze import WHITE
+
 from data.classes import *
 from data.config import *
 from levels.levels import level_list
@@ -40,6 +42,9 @@ def game_cycle(difficulty):
 
         player.update(platforms, finish_point, spikes)
         if player.rect.colliderect(finish_point.rect):
+            sound1 = pygame.mixer.Sound("sounds/zvuk_pup.mp3")
+            running = True
+            channel = sound1.play()
             if difficulty == 4:
                 menu()
                 running = False
@@ -49,6 +54,9 @@ def game_cycle(difficulty):
 
         for spike in spikes:
             if player.rect.colliderect(spike.rect):
+                sound1 = pygame.mixer.Sound("sounds/sound_auch.mp3")
+                running = True
+                channel = sound1.play()
                 game_cycle(difficulty)
                 running = False
 
@@ -153,9 +161,6 @@ def menu():
     menu.add.selector('Сложность: ',
                       [('Уровень 1', 0), ('Уровень 2', 1), ('Уровень 3', 2), ('Уровень 4', 3), ('Уровень 5', 4)],
                       onchange=set_difficulty)
-    # menu.add.selector('Скин: ',
-    #                   [('Default cube', 0), ('Crazy cube', 1), ('Kaneki cube', 2), ('Akashi cube', 3)],
-    #                   onchange=set_skin)
     menu.add.button('Правила', rules_screen)
     menu.add.button('Играть', lambda: game_cycle(DIFFICULTY))
     menu.add.button('Выход', terminate)

@@ -1,5 +1,5 @@
-import pygame
 from data.config import *
+
 
 class Player:
     def __init__(self, x, y):
