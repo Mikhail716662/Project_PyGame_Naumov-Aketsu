@@ -1,57 +1,44 @@
 import time
 
 import pygame
-
-
-class Background(pygame.sprite.Sprite):
-    def __init__(self, size):
-        super().__init__()
-        self.image = pygame.image.load("images/image1.png")
-        # self.image = pygame.transform.rotozoom(self.image, 0, 1.94)
-        self.rect = self.image.get_rect()
-        self.mask = pygame.mask.from_surface(self.image)
-        self.rect.bottom = size[1]
+from data.config import *
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, x):
+    def __init__(self, x, y):
         super().__init__()
-        self.image = pygame.image.load('images/image.png')
-        self.rect = self.image.get_rect(center=(x, 0))
-        self.rect.center = (1280 / 2, 720 / 2)
+        self.x, self.y = x, y
+        self.image = pygame.image.load('images/slimee.png')
+        self.rect = self.image.get_rect().move(x, y)
+        self.speedx = 0
+        self.speedy = 0
+        self.gravity = 2
 
-    def update(self):
+    def update(self, collides):
         self.speedx = 0
         key = pygame.key.get_pressed()
+        if collides:
+            self.speedy = 0
+        else:
+            self.speedy = self.gravity
         if key[pygame.K_LEFT]:
-            self.speedx = -15
-        if key[pygame.K_RIGHT]:
-            self.speedx = 15
+            self.speedx = -3
+        elif key[pygame.K_RIGHT]:
+            self.speedx = 3
+        elif key[pygame.K_SPACE]:
+            if collides:
+                self.speedy = -10
+            else:
+                self.speedy = self.gravity
         self.rect.x += self.speedx
+        self.rect.y += self.speedy
 
 
-class Spike:
-    pass
-
-
-class Lava:
-    pass
-
-
-class End_Level_Menu:
-    pass
-
-
-class Records_Menu:
-    pass
-
-
-class Settings_Menu:
-    pass
-
-
-class Platform:
-    pass
+class Platform(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        self.image = pygame.image.load('images/platforma.png')
+        self.rect = self.image.get_rect().move(x, y)
 
 
 class Finish_Point:
