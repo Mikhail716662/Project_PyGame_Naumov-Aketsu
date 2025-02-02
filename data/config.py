@@ -1,23 +1,24 @@
 import pygame
 
-# Константы:
-GAME_NAME = "Slime Platformer"
+GAME_NAME = "Simple Platformer"
+SIZE = WIDTH, HEIGHT = 800, 600
+PLAYER_SIZE = 40
+SPIKE_SIZE = 40
+SPIKE_COLOR = (255, 0, 0)
+PLATFORM_HEIGHT = 20
+PLAYER_COLOR = (0, 128, 255)
+PLATFORM_COLOR = (100, 100, 100)
+GRAVITY = 1
+JUMP_SPEED = -15
+MOVE_SPEED = 5
+AIR_MOVE_SPEED = 3
+TILE_SIZE = 40
+FINISH_SIZE = 40
+FINISH_COLOR = (255, 255, 0)
+DIFFICULTY = 0
 FPS = 60
-SIZE = WIDTH, HEIGHT = 1920, 1080
-DIFFICULTY = 0  # Сложность игры (и/или выбор уровня)
-
-# Конфигурации PyGame:
 pygame.init()
-
-# Игровое поле
-# Шрифт
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+clock = pygame.time.Clock()
 font = pygame.font.Font(None, 30)
 
-# Задержка для зажатой клавиши. Например, при движении игрока.
-screen = pygame.display.set_mode(SIZE)
-clock = pygame.time.Clock()
-
-# Группы спрайтов
-all_sprites = pygame.sprite.Group()
-tiles_group = pygame.sprite.Group()
-player_group = pygame.sprite.Group()

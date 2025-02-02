@@ -38,7 +38,8 @@ menu = pygame_menu.Menu(
 )
 
 user_name = menu.add.text_input('Name: ', default='John Doe', maxchar=10)
-menu.add.selector('Difficulty: ', [('Hard', 1), ('Easy', 2)], onchange=set_difficulty)
+menu.add.selector('Difficulty: ', [('Level 1', 1), ('Level 2', 2), ('Level 3', 3), ('Level 4', 4), ('Level 5', 5)],
+                  onchange=set_difficulty)
 menu.add.button('Play', start_the_game)
 menu.add.button('Quit', pygame_menu.events.EXIT)
 
