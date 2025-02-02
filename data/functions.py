@@ -1,5 +1,7 @@
 import sys
 from typing import Tuple, Any
+
+import winsound
 from pygame_menu.examples.other.maze import WHITE
 import pygame_menu
 from pygame_menu.examples import create_example_window
@@ -41,14 +43,17 @@ def game_cycle(difficulty):
         player.update(platforms, finish_point, spikes)
         if player.rect.colliderect(finish_point.rect):
             if difficulty == 4:
+                winsound.PlaySound('sounds/level_complete.wav', winsound.SND_FILENAME)
                 menu()
                 running = False
             else:
+                winsound.PlaySound('sounds/level_complete.wav', winsound.SND_FILENAME)
                 game_cycle(difficulty + 1)
                 running = False
 
         for spike in spikes:
             if player.rect.colliderect(spike.rect):
+                winsound.PlaySound('sounds/death.wav', winsound.SND_FILENAME)
                 game_cycle(difficulty)
                 running = False
 

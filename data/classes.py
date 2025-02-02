@@ -38,6 +38,7 @@ class Player:
             self.y_vel = JUMP_SPEED
             self.is_jumping = True
 
+
     def move_x(self, direction, platforms):
         if self.on_ground:
             self.rect.x += direction * MOVE_SPEED
