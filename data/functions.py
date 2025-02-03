@@ -1,7 +1,6 @@
 import sys
 from typing import Tuple, Any
-
-import winsound
+import pygame.mixer
 from pygame_menu.examples.other.maze import WHITE
 import pygame_menu
 from pygame_menu.examples import create_example_window
@@ -43,17 +42,17 @@ def game_cycle(difficulty):
         player.update(platforms, finish_point, spikes)
         if player.rect.colliderect(finish_point.rect):
             if difficulty == 4:
-                winsound.PlaySound('sounds/level_complete.wav', winsound.SND_FILENAME)
+                pygame.mixer.Sound("sounds/level_complete.wav").play()
                 menu()
                 running = False
             else:
-                winsound.PlaySound('sounds/level_complete.wav', winsound.SND_FILENAME)
+                pygame.mixer.Sound("sounds/level_complete.wav").play()
                 game_cycle(difficulty + 1)
                 running = False
 
         for spike in spikes:
             if player.rect.colliderect(spike.rect):
-                winsound.PlaySound('sounds/death.wav', winsound.SND_FILENAME)
+                pygame.mixer.Sound("sounds/death.wav").play()
                 game_cycle(difficulty)
                 running = False
 
@@ -140,10 +139,10 @@ def create_level_from_string(level_string):
 
 
 def set_difficulty(selected: Tuple, value: Any) -> None:
-    print(f'Set difficulty to {selected[0]} ({value})')
+    print(f'Set color to {selected[0]} ({value})')
     global DIFFICULTY
     DIFFICULTY = value
-    print("DIFFICULTY ", DIFFICULTY)
+    print("COLOR ", DIFFICULTY)
 
 
 def menu():

@@ -1,6 +1,7 @@
 import pygame
 from data.config import *
 
+
 class Player:
     def __init__(self, x, y):
         self.rect = pygame.Rect(x, y, PLAYER_SIZE, PLAYER_SIZE)
@@ -35,9 +36,9 @@ class Player:
 
     def jump(self):
         if self.on_ground and not self.is_jumping:
+            pygame.mixer.Sound("sounds/level_complete.wav").play()
             self.y_vel = JUMP_SPEED
             self.is_jumping = True
-
 
     def move_x(self, direction, platforms):
         if self.on_ground:
