@@ -40,7 +40,8 @@
 
 ---
 
-6. Graphical interface: ![img.png](img.png)![img_1.png](img_1.png)
+6. Graphical interface: В [главном меню](img.png) есть кнопки "играть", "выйти" и "правила". 
+Далее представлено [окно правил](img_1.png)
 
 ---
 

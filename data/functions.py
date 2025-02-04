@@ -15,6 +15,9 @@ def terminate():
 
 
 def game_cycle(difficulty):
+    sound1 = pygame.mixer.Sound("sounds/button_sound.mp3")
+    running = True
+    channel = sound1.play()
     level_string = level_list[difficulty]
     platforms, player_start_x, player_start_y, finish_point, spikes = create_level_from_string(level_string)
     player = Player(player_start_x, player_start_y)
@@ -68,6 +71,9 @@ def game_cycle(difficulty):
 
 
 def rules_screen():
+    sound1 = pygame.mixer.Sound("sounds/button_sound.mp3")
+    running = True
+    channel = sound1.play()
     rules_text = ["ПРАВИЛА",
                   "",
                   "Нельзя врезаться в шипы, иначе - поражение",
@@ -97,6 +103,9 @@ def rules_screen():
             if event.type == pygame.QUIT:
                 terminate()
             elif event.type == pygame.MOUSEBUTTONUP:
+                sound1 = pygame.mixer.Sound("sounds/button_sound.mp3")
+                running = True
+                channel = sound1.play()
                 return
         pygame.display.flip()
         clock.tick(FPS)
@@ -139,6 +148,9 @@ def create_level_from_string(level_string):
 
 
 def set_difficulty(selected: Tuple, value: Any) -> None:
+    sound1 = pygame.mixer.Sound("sounds/button_sound.mp3")
+    running = True
+    channel = sound1.play()
     print(f'Set color to {selected[0]} ({value})')
     global DIFFICULTY
     DIFFICULTY = value
