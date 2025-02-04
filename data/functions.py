@@ -1,10 +1,9 @@
 import sys
 from typing import Tuple, Any
-
+import pygame.mixer
+from pygame_menu.examples.other.maze import WHITE
 import pygame_menu
 from pygame_menu.examples import create_example_window
-from pygame_menu.examples.other.maze import WHITE
-
 from data.classes import *
 from data.config import *
 from levels.levels import level_list
@@ -45,21 +44,18 @@ def game_cycle(difficulty):
 
         player.update(platforms, finish_point, spikes)
         if player.rect.colliderect(finish_point.rect):
-            sound1 = pygame.mixer.Sound("sounds/zvuk_pup.mp3")
-            running = True
-            channel = sound1.play()
             if difficulty == 4:
+                pygame.mixer.Sound("sounds/level_complete.wav").play()
                 menu()
                 running = False
             else:
+                pygame.mixer.Sound("sounds/level_complete.wav").play()
                 game_cycle(difficulty + 1)
                 running = False
 
         for spike in spikes:
             if player.rect.colliderect(spike.rect):
-                sound1 = pygame.mixer.Sound("sounds/sound_auch.mp3")
-                running = True
-                channel = sound1.play()
+                pygame.mixer.Sound("sounds/death.wav").play()
                 game_cycle(difficulty)
                 running = False
 
@@ -155,10 +151,10 @@ def set_difficulty(selected: Tuple, value: Any) -> None:
     sound1 = pygame.mixer.Sound("sounds/button_sound.mp3")
     running = True
     channel = sound1.play()
-    print(f'Set difficulty to {selected[0]} ({value})')
+    print(f'Set color to {selected[0]} ({value})')
     global DIFFICULTY
     DIFFICULTY = value
-    print("DIFFICULTY ", DIFFICULTY)
+    print("COLOR ", DIFFICULTY)
 
 
 def menu():
