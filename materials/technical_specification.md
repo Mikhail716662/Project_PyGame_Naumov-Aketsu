@@ -1,4 +1,4 @@
-1. **Project Name**: Slime Platformer
+1. **Project Name**: Simple Platformer
 
 ---
 
